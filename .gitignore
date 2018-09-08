@@ -1,0 +1,7 @@
+.DS_Store
+
+# Ignore the build
+assignment_1/programming_project/build/*
+
+# Ignore executables
+assignment_1/programming_project/bin/*
