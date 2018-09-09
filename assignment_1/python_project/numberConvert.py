@@ -17,25 +17,34 @@ class NumberConvert(object):
         :type input
         num: list[int] (number in other base to convert)
         base: int (number system)
-        :rtype: list[int]
+        :rtype: int (decimal base)
         """
         l = len(num)
+        indexFactor = l - 1
         even = 0
         odd = 0
 
-        if l % 2 == 0:
-            odd = num[0]
-            even = num[1]
-        else:
-            even = num[0]
-            odd = num[1]
+        #Corner check for l = 1 or 2
+        if l == 1:
+            return num[0]
+        if l == 2:
+            return (num[0] + num[1] * base)
 
+        #If l > 2, determine initial value for even & odd
+        if l % 2 == 0:
+            odd, even = num[0], num[1]
+        else:
+            even, odd = num[0], num[1]
+
+        #Polyn Calculation
         for i in range(2, l):
-            if i % 2 != 0:
+            index = abs(i - indexFactor)
+            if index % 2 == 0:
                 even = even * base * base + num[i]
-            if i % 2 == 0:
+            if index % 2 != 0:
                 odd = odd * base * base + num[i]
 
+        #multiply base for odd after loop
         odd *= base
 
         return (even + odd)
@@ -64,7 +73,7 @@ class UnitTest(unittest.TestCase):
     def test_check(self):
         test = NumberConvert()
 
-        # TC
+        # TC - decimal to Number test
         # Arrange
         args = 397838, 27
         expected = [20, 5, 19, 20]
@@ -73,21 +82,37 @@ class UnitTest(unittest.TestCase):
         # Act
         actual = test.toNum(*args)
         # Assert
-        print("Test Case #1... ")
+        print("Test Case #1 decimal to number test... ")
         self.assertEqual(actual, expected)
 
-        # TC
+        # TC - 27 base test
         # Arrange
         args = [20, 5, 19, 20], 27
         expected = 397838
-        #args = [1, 1, 1, 0, 1, 0, 1, 1], 2
-        #expected = 235
-        #args = [1, 0, 1, 1], 2
-        #expected = 11
         # Act
         actual = test.toDecimal(*args)
         # Assert
-        print("Test Case #2... ")
+        print("Test Case #2 27 base test... ")
+        self.assertEqual(actual, expected)
+
+        # TC - binary base test
+        # Arrange
+        args = [1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1], 2
+        expected = 2549
+        # Act
+        actual = test.toDecimal(*args)
+        # Assert
+        print("Test Case #3 binary base test... ")
+        self.assertEqual(actual, expected)
+
+        # TC - octal base test
+        # Arrange
+        args = [1, 2, 3, 4, 5], 8
+        expected = 5349
+        # Act
+        actual = test.toDecimal(*args)
+        # Assert
+        print("Test Case #4 octal base test... ")
         self.assertEqual(actual, expected)
 
 ##############################################################################################
