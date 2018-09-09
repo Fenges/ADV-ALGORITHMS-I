@@ -81,13 +81,22 @@ class MillerRabinTest(object):
 
         return res
 
+    def isCoPrime(self, p, q, e):
+        """
+        :type input
+        p: int (prime number)
+        q: int (prime number)
+        :rtype: boolean
+        """
+        return e%p != 0 and e%q != 0
+
 ##############################################################################################
 # Test Case
 class UnitTest(unittest.TestCase):
     def test_check(self):
         test = MillerRabinTest()
 
-        # TC
+        # TC - check prime
         # Arrange
         args = 100
         # Act
@@ -97,6 +106,27 @@ class UnitTest(unittest.TestCase):
                 print(n)
         # Assert
         print("Test is completed!")
+
+        # TC - check co-prime (pass)
+        # Arrange
+        args = 2, 3, 35
+        expected = True
+        # Act
+        actual = test.isCoPrime(*args)
+        # Assert
+        print("Test Case: co prime pass check... ")
+        self.assertEqual(actual, expected)
+
+        # TC - check co-prime (fail)
+        # Arrange
+        args = 2, 3, 8
+        expected = False
+        # Act
+        actual = test.isCoPrime(*args)
+        # Assert
+        print("Test Case: co prime fail check... ")
+        self.assertEqual(actual, expected)
+
 ##############################################################################################
 # Script Section - Call Test Cases
 if __name__ == '__main__':
