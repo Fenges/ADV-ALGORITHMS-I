@@ -12,14 +12,33 @@ Usage:
 # Performance: ?%
 
 class NumberConvert(object):
-    def toDecimal(self, num, sys):
+    def toDecimal(self, num, base):
         """
         :type input
-        a: int (number to convert)
-        b: int (number system)
+        num: list[int] (number in other base to convert)
+        base: int (number system)
         :rtype: list[int]
         """
-        res = []
+        l = len(num)
+        even = 0
+        odd = 0
+
+        if l % 2 == 0:
+            odd = num[0]
+            even = num[1]
+        else:
+            even = num[0]
+            odd = num[1]
+
+        for i in range(2, l):
+            if i % 2 != 0:
+                even = even * base * base + num[i]
+            if i % 2 == 0:
+                odd = odd * base * base + num[i]
+
+        odd *= base
+
+        return (even + odd)
 
     def toNum(self, num, base):
         """
@@ -55,7 +74,20 @@ class UnitTest(unittest.TestCase):
         actual = test.toNum(*args)
         # Assert
         print("Test Case #1... ")
-        print(actual)
+        self.assertEqual(actual, expected)
+
+        # TC
+        # Arrange
+        args = [20, 5, 19, 20], 27
+        expected = 397838
+        #args = [1, 1, 1, 0, 1, 0, 1, 1], 2
+        #expected = 235
+        #args = [1, 0, 1, 1], 2
+        #expected = 11
+        # Act
+        actual = test.toDecimal(*args)
+        # Assert
+        print("Test Case #2... ")
         self.assertEqual(actual, expected)
 
 ##############################################################################################
