@@ -16,7 +16,7 @@ int main()
     std::cout << "#########################################################" << std::endl;
     std::cout << "Euclid GCD: " << std::endl;
     std::cout << "gcd(23, 36) = " << euclidGcd(24, 36) << std::endl;
-    
+
     std::cout << "#########################################################" << std::endl;
     std::cout << "Number Convert - toDecimal: " << std::endl;
     std::cout << "toDecimal({20, 5, 19, 20}, 27) = " << toDecimal({20, 5, 19, 20}, 27) << std::endl;
@@ -28,7 +28,7 @@ int main()
     for(int i = 0; i < convertedNum.size(); i++)
         std::cout << convertedNum.at(i) << " ";
     std::cout << std::endl;
-    
+
     std::cout << "#########################################################" << std::endl;
     return 0;
 }

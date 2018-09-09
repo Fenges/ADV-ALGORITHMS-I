@@ -10,6 +10,7 @@
 
 int euclidGcd(int a, int b);
 bool isPrime(int n, int k);
+bool isCoPrime(int p, int q, int e);
 int toDecimal(std::vector<int> num, int base);
 std::vector<int> toNum(int num, int base);
 

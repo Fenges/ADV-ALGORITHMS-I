@@ -112,3 +112,13 @@ bool isPrime(int n, int k)
     
     return true;
 }
+
+bool isCoPrime(int p, int q, int e)
+{
+    if (e%p != 0 && e%q != 0){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
