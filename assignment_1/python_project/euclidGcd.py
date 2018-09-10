@@ -39,13 +39,13 @@ class EuclidGcd(object):
         :rtype: int
         """
         if b == 0:
-            g = a
-            x = 1
-            y = 0
+            g, x, y = a, 1, 0
             return g, x, y
 
         r = a%b
         q = int(a/b)
+
+        #Recursive call
         g, x, y = self.extendGcd(b, r, g, x, y)
 
         xTemp = x

@@ -1,34 +1,41 @@
 #include <iostream>
 #include "headers.hpp"
-
-using namespace std;
+#include <tuple>
 
 int main()
 {
-    std::cout << "#########################################################" << std::endl;
-    std::cout << "Miller-Rabin Primility Test: " << std::endl;
+    cout << "#########################################################" << endl;
+    cout << "Miller-Rabin Primility Test: " << endl;
     int k = 4;  // Number of iterations
 
     for (int n = 1; n < 100; n++)
         if (isPrime(n, k))
-            std::cout << n << " ";
+            cout << n << " ";
 
-    std::cout << "#########################################################" << std::endl;
-    std::cout << "Euclid GCD: " << std::endl;
-    std::cout << "gcd(23, 36) = " << euclidGcd(24, 36) << std::endl;
+    cout << "#########################################################" << endl;
+    cout << "Euclid GCD: " << endl;
+    cout << "gcd(23, 36) = " << euclidGcd(24, 36) << endl;
+    
+    cout << "#########################################################" << endl;
+    cout << "Extended Euclid GCD: ";
+    tuple<int, int, int> extendGcdRes = extendGcd(56700, 119070, 0, 0, 0);
+    cout << get<0>(extendGcdRes) << " ";
+    cout << get<1>(extendGcdRes) << " ";
+    cout << get<2>(extendGcdRes) << " ";
+    cout << endl;
 
-    std::cout << "#########################################################" << std::endl;
-    std::cout << "Number Convert - toDecimal: " << std::endl;
-    std::cout << "toDecimal({20, 5, 19, 20}, 27) = " << toDecimal({20, 5, 19, 20}, 27) << std::endl;
+    cout << "#########################################################" << endl;
+    cout << "Number Convert - toDecimal: " << endl;
+    cout << "toDecimal({20, 5, 19, 20}, 27) = " << toDecimal({20, 5, 19, 20}, 27) << endl;
 
-    std::cout << "#########################################################" << std::endl;
-    std::cout << "Number Convert - toNum: " << std::endl;
-    std::vector<int> convertedNum = toNum(397838, 27);
-    std::cout << "toNum(397838, 27) = ";
+    cout << "#########################################################" << endl;
+    cout << "Number Convert - toNum: " << endl;
+    vector<int> convertedNum = toNum(397838, 27);
+    cout << "toNum(397838, 27) = ";
     for(int i = 0; i < convertedNum.size(); i++)
-        std::cout << convertedNum.at(i) << " ";
-    std::cout << std::endl;
+        cout << convertedNum.at(i) << " ";
+    cout << endl;
 
-    std::cout << "#########################################################" << std::endl;
+    cout << "#########################################################" << endl;
     return 0;
 }

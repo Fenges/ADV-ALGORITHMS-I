@@ -1,7 +1,7 @@
 #include "headers.hpp"
 
 // C++ Euclid GCD
-int toDecimal(std::vector<int> num, int base)
+int toDecimal(vector<int> num, int base)
 {
     int l = (int)num.size();
     int indexFactor = l - 1;
@@ -43,8 +43,8 @@ int toDecimal(std::vector<int> num, int base)
     return (even + odd);
 }
 
-std::vector<int> toNum(int num, int base){
-    std::vector<int> res = {};
+vector<int> toNum(int num, int base){
+    vector<int> res = {};
 
     while (num > base){
         int r = num % base;
