@@ -28,6 +28,32 @@ class EuclidGcd(object):
 
         return a
 
+    def extendGcd(self, a, b, g, x, y):
+        """
+        :type input
+        a: int (integer a)
+        b: int (integer b)
+        g: int (for g = ax * by)
+        x: int (for g = ax * by)
+        y: int (for g = ax * by)
+        :rtype: int
+        """
+        if b == 0:
+            g, x, y = a, 1, 0
+            return g, x, y
+
+        r = a%b
+        q = int(a/b)
+
+        #Recursive call
+        g, x, y = self.extendGcd(b, r, g, x, y)
+
+        xTemp = x
+        x = y
+        y = xTemp - y*q
+
+        return g, x, y
+
 ##############################################################################################
 # Test Case
 class UnitTest(unittest.TestCase):
@@ -41,7 +67,7 @@ class UnitTest(unittest.TestCase):
         # Act
         actual = test.gcd(*args)
         # Assert
-        print("Test Case #1... ")
+        print("Test Case #1 for gcd()... ")
         self.assertEqual(actual, expected)
 
          # TC
@@ -51,7 +77,7 @@ class UnitTest(unittest.TestCase):
         # Act
         actual = test.gcd(*args)
         # Assert
-        print("Test Case #2... ")
+        print("Test Case #2 for gcd()... ")
         self.assertEqual(actual, expected)
 
          # TC
@@ -61,8 +87,39 @@ class UnitTest(unittest.TestCase):
         # Act
         actual = test.gcd(*args)
         # Assert
-        print("Test Case #3... ")
+        print("Test Case #3 for gcd()... ")
         self.assertEqual(actual, expected)
+
+        # TC - extendGcd()
+        # Arrange
+        args = 56700, 119070, 0, 0, 0
+        expected = 5670, -2, 1
+        # Act
+        actual = test.extendGcd(*args)
+        # Assert
+        print("Test Case #4 for extendGcd()... ")
+        self.assertEqual(actual, expected)
+
+         # TC - extendGcd()
+        # Arrange
+        args = 39, 36, 0, 0, 0
+        expected = 3, 1, -1
+        # Act
+        actual = test.extendGcd(*args)
+        # Assert
+        print("Test Case #5 for extendGcd()... ")
+        self.assertEqual(actual, expected)
+
+         # TC - extendGcd()
+        # Arrange
+        args = 24, 1, 0, 0, 0
+        expected = 1, 0, 1
+        # Act
+        actual = test.extendGcd(*args)
+        # Assert
+        print("Test Case #6 for extendGcd()... ")
+        self.assertEqual(actual, expected)
+
 ##############################################################################################
 # Script Section - Call Test Cases
 if __name__ == '__main__':
