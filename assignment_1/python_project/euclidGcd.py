@@ -28,22 +28,31 @@ class EuclidGcd(object):
 
         return a
 
-    def extendGcd(self, a, b):
+    def extendGcd(self, a, b, g, x, y):
         """
         :type input
         a: int (integer a)
         b: int (integer b)
+        g: int (for g = ax * by)
+        x: int (for g = ax * by)
+        y: int (for g = ax * by)
         :rtype: int
         """
-        if a == 0:
-            return b
         if b == 0:
-            return a
+            g = a
+            x = 1
+            y = 0
+            return g, x, y
 
         r = a%b
-        q = a/b
+        q = int(a/b)
+        g, x, y = self.extendGcd(b, r, g, x, y)
 
-        return self.extendGcd(b, r)
+        xTemp = x
+        x = y
+        y = xTemp - y*q
+
+        return g, x, y
 
 ##############################################################################################
 # Test Case
@@ -83,8 +92,8 @@ class UnitTest(unittest.TestCase):
 
         # TC - extendGcd()
         # Arrange
-        args = 24, 36
-        expected = 12
+        args = 56700, 119070, 0, 0, 0
+        expected = 5670, -2, 1
         # Act
         actual = test.extendGcd(*args)
         # Assert
@@ -93,8 +102,8 @@ class UnitTest(unittest.TestCase):
 
          # TC - extendGcd()
         # Arrange
-        args = 39, 36
-        expected = 3
+        args = 39, 36, 0, 0, 0
+        expected = 3, 1, -1
         # Act
         actual = test.extendGcd(*args)
         # Assert
@@ -103,8 +112,8 @@ class UnitTest(unittest.TestCase):
 
          # TC - extendGcd()
         # Arrange
-        args = 24, 1
-        expected = 1
+        args = 24, 1, 0, 0, 0
+        expected = 1, 0, 1
         # Act
         actual = test.extendGcd(*args)
         # Assert
