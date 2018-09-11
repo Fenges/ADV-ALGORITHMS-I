@@ -1,6 +1,7 @@
+#include <string>
+#include <tuple>
 #include <iostream>
 #include "../include/headers.hpp"
-#include <tuple>
 
 using namespace std;
 

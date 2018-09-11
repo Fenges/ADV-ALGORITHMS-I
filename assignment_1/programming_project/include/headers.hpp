@@ -7,6 +7,9 @@
 #include <vector>
 #include <cmath>
 #include <tuple>
+#include <iostream>
+#include <string>
+#include <stdexcept>
 
 using namespace std;
 
