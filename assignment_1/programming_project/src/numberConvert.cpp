@@ -44,7 +44,7 @@ int polyEval(vector<int> coef, int base)
 }
 
 vector<int> changeBase(int num, int base){
-    vector<int> res = {};
+    vector<int> res;
 
     while (num > base){
         int r = num % base;
