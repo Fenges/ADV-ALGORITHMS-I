@@ -15,23 +15,23 @@ int main()
     cout << "#########################################################" << endl;
     cout << "Euclid GCD: " << endl;
     cout << "gcd(23, 36) = " << euclidGcd(24, 36) << endl;
-    
+
     cout << "#########################################################" << endl;
     cout << "Extended Euclid GCD: ";
-    tuple<int, int, int> extendGcdRes = extendGcd(56700, 119070, 0, 0, 0);
+    tuple<int, int, int> extendGcdRes = extendEuclidGcd(56700, 119070, 0, 0, 0);
     cout << get<0>(extendGcdRes) << " ";
     cout << get<1>(extendGcdRes) << " ";
     cout << get<2>(extendGcdRes) << " ";
     cout << endl;
 
     cout << "#########################################################" << endl;
-    cout << "Number Convert - toDecimal: " << endl;
-    cout << "toDecimal({20, 5, 19, 20}, 27) = " << toDecimal({20, 5, 19, 20}, 27) << endl;
+    cout << "Number Convert - polyEval: " << endl;
+    cout << "polyEval({20, 5, 19, 20}, 27) = " << polyEval({20, 5, 19, 20}, 27) << endl;
 
     cout << "#########################################################" << endl;
-    cout << "Number Convert - toNum: " << endl;
-    vector<int> convertedNum = toNum(397838, 27);
-    cout << "toNum(397838, 27) = ";
+    cout << "Number Convert - changeBase: " << endl;
+    vector<int> convertedNum = changeBase(397838, 27);
+    cout << "changeBase(397838, 27) = ";
     for(int i = 0; i < convertedNum.size(); i++)
         cout << convertedNum.at(i) << " ";
     cout << endl;

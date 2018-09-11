@@ -96,16 +96,35 @@ class UnitTest(unittest.TestCase):
     def test_check(self):
         test = MillerRabinTest()
 
-        # TC - check prime
+        # TC - Get primes from 1 - 100
         # Arrange
         args = 100
         # Act
         k = 4
+        print("Get primes from 1 - 100")
         for n in range(1, args):
             if test.isPrime(n, k):
                 print(n)
+
+        # TC - check prime
+        # Arrange
+        args = 89, 4
+        expected = True
+        # Act
+        actual = test.isPrime(*args)
         # Assert
-        print("Test is completed!")
+        print("Test Case: prime pass check... ")
+        self.assertEqual(actual, expected)
+
+        # TC - check prime
+        # Arrange
+        args = 88, 4
+        expected = False
+        # Act
+        actual = test.isPrime(*args)
+        # Assert
+        print("Test Case: prime fail check... ")
+        self.assertEqual(actual, expected)
 
         # TC - check co-prime (pass)
         # Arrange

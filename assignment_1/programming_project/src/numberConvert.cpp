@@ -1,49 +1,49 @@
 #include "headers.hpp"
 
 // C++ Euclid GCD
-int toDecimal(vector<int> num, int base)
+int polyEval(vector<int> coef, int base)
 {
-    int l = (int)num.size();
+    int l = (int)coef.size();
     int indexFactor = l - 1;
     int even = 0;
     int odd = 0;
-    
+
     //Corner check for l = 1 or 2
     if (l == 1){
-        return num.at(0);
+        return coef.at(0);
     }
-    
+
     if (l == 2){
-        return (num.at(0) + num.at(0) * base);
+        return (coef.at(0) + coef.at(0) * base);
     }
-    
+
     //If l > 2, determine initial value for even & odd
     if (l % 2 == 0){
-        odd = num.at(0);
-        even = num.at(1);
+        odd = coef.at(0);
+        even = coef.at(1);
     }
     else{
-        odd = num.at(1);
-        even = num.at(0);
+        odd = coef.at(1);
+        even = coef.at(0);
     }
-    
+
     //Polyn Calculation
     for(int i = 2; i < l; i++){
         int index = abs(i - indexFactor);
         if (index % 2 == 0){
-            even = even * base * base + num.at(i);
+            even = even * base * base + coef.at(i);
         }
         else{
-            odd = odd * base * base + num.at(i);
+            odd = odd * base * base + coef.at(i);
         }
     }
-    
+
     //multiply base for odd after loop
     odd *= base;
     return (even + odd);
 }
 
-vector<int> toNum(int num, int base){
+vector<int> changeBase(int num, int base){
     vector<int> res = {};
 
     while (num > base){

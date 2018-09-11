@@ -14,7 +14,7 @@ Usage:
 # Performance: ?%
 
 class EuclidGcd(object):
-    def gcd(self, a, b):
+    def euclidGcd(self, a, b):
         """
         :type input
         a: int (integer a)
@@ -28,7 +28,7 @@ class EuclidGcd(object):
 
         return a
 
-    def extendGcd(self, a, b, g, x, y):
+    def extendEuclidGcd(self, a, b, g, x, y):
         """
         :type input
         a: int (integer a)
@@ -46,7 +46,7 @@ class EuclidGcd(object):
         q = int(a/b)
 
         #Recursive call
-        g, x, y = self.extendGcd(b, r, g, x, y)
+        g, x, y = self.extendEuclidGcd(b, r, g, x, y)
 
         xTemp = x
         x = y
@@ -65,7 +65,7 @@ class UnitTest(unittest.TestCase):
         args = 24, 36
         expected = 12
         # Act
-        actual = test.gcd(*args)
+        actual = test.euclidGcd(*args)
         # Assert
         print("Test Case #1 for gcd()... ")
         self.assertEqual(actual, expected)
@@ -75,7 +75,7 @@ class UnitTest(unittest.TestCase):
         args = 39, 36
         expected = 3
         # Act
-        actual = test.gcd(*args)
+        actual = test.euclidGcd(*args)
         # Assert
         print("Test Case #2 for gcd()... ")
         self.assertEqual(actual, expected)
@@ -85,7 +85,7 @@ class UnitTest(unittest.TestCase):
         args = 24, 1
         expected = 1
         # Act
-        actual = test.gcd(*args)
+        actual = test.euclidGcd(*args)
         # Assert
         print("Test Case #3 for gcd()... ")
         self.assertEqual(actual, expected)
@@ -95,7 +95,7 @@ class UnitTest(unittest.TestCase):
         args = 56700, 119070, 0, 0, 0
         expected = 5670, -2, 1
         # Act
-        actual = test.extendGcd(*args)
+        actual = test.extendEuclidGcd(*args)
         # Assert
         print("Test Case #4 for extendGcd()... ")
         self.assertEqual(actual, expected)
@@ -105,7 +105,7 @@ class UnitTest(unittest.TestCase):
         args = 39, 36, 0, 0, 0
         expected = 3, 1, -1
         # Act
-        actual = test.extendGcd(*args)
+        actual = test.extendEuclidGcd(*args)
         # Assert
         print("Test Case #5 for extendGcd()... ")
         self.assertEqual(actual, expected)
@@ -115,7 +115,7 @@ class UnitTest(unittest.TestCase):
         args = 24, 1, 0, 0, 0
         expected = 1, 0, 1
         # Act
-        actual = test.extendGcd(*args)
+        actual = test.extendEuclidGcd(*args)
         # Assert
         print("Test Case #6 for extendGcd()... ")
         self.assertEqual(actual, expected)
