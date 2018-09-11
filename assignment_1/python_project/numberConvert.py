@@ -12,44 +12,44 @@ Usage:
 # Performance: ?%
 
 class NumberConvert(object):
-    def toDecimal(self, num, base):
+    def polyEval(self, coef, base):
         """
         :type input
-        num: list[int] (number in other base to convert)
+        coef: list[int] (number in other base to convert)
         base: int (number system)
         :rtype: int (decimal base)
         """
-        l = len(num)
+        l = len(coef)
         indexFactor = l - 1
         even = 0
         odd = 0
 
         #Corner check for l = 1 or 2
         if l == 1:
-            return num[0]
+            return coef[0]
         if l == 2:
-            return (num[0] + num[1] * base)
+            return (coef[0] + coef[1] * base)
 
         #If l > 2, determine initial value for even & odd
         if l % 2 == 0:
-            odd, even = num[0], num[1]
+            odd, even = coef[0], coef[1]
         else:
-            even, odd = num[0], num[1]
+            even, odd = coef[0], coef[1]
 
         #Polyn Calculation
         for i in range(2, l):
             index = abs(i - indexFactor)
             if index % 2 == 0:
-                even = even * base * base + num[i]
+                even = even * base * base + coef[i]
             if index % 2 != 0:
-                odd = odd * base * base + num[i]
+                odd = odd * base * base + coef[i]
 
         #multiply base for odd after loop
         odd *= base
 
         return (even + odd)
 
-    def toNum(self, num, base):
+    def changeBase(self, num, base):
         """
         :type input
         num: int (number to convert)
@@ -80,7 +80,7 @@ class UnitTest(unittest.TestCase):
         #args = 235, 2
         #expected = [1, 1, 1, 0, 1, 0, 1, 1]
         # Act
-        actual = test.toNum(*args)
+        actual = test.changeBase(*args)
         # Assert
         print("Test Case #1 decimal to number test... ")
         self.assertEqual(actual, expected)
@@ -90,7 +90,7 @@ class UnitTest(unittest.TestCase):
         args = [20, 5, 19, 20], 27
         expected = 397838
         # Act
-        actual = test.toDecimal(*args)
+        actual = test.polyEval(*args)
         # Assert
         print("Test Case #2 27 base test... ")
         self.assertEqual(actual, expected)
@@ -100,7 +100,7 @@ class UnitTest(unittest.TestCase):
         args = [1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1], 2
         expected = 2549
         # Act
-        actual = test.toDecimal(*args)
+        actual = test.polyEval(*args)
         # Assert
         print("Test Case #3 binary base test... ")
         self.assertEqual(actual, expected)
@@ -110,7 +110,7 @@ class UnitTest(unittest.TestCase):
         args = [1, 2, 3, 4, 5], 8
         expected = 5349
         # Act
-        actual = test.toDecimal(*args)
+        actual = test.polyEval(*args)
         # Assert
         print("Test Case #4 octal base test... ")
         self.assertEqual(actual, expected)

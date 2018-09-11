@@ -11,10 +11,10 @@
 using namespace std;
 
 int euclidGcd(int a, int b);
-std::tuple<int, int, int> extendGcd(int a, int b, int g, int x, int y);
+std::tuple<int, int, int> extendEuclidGcd(int a, int b, int g, int x, int y);
 bool isPrime(int n, int k);
 bool isCoPrime(int p, int q, int e);
-int toDecimal(std::vector<int> num, int base);
-std::vector<int> toNum(int num, int base);
+int polyEval(std::vector<int> num, int base);
+std::vector<int> changeBase(int num, int base);
 
 #endif

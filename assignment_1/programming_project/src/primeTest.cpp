@@ -2,9 +2,9 @@
 
 // C++ program Miller-Rabin primality test
 /*
- 
+
  Miller-Rabin Test Algorithm Introduction:
- 
+
  // It returns false if n is composite and returns true if n
  // is probably prime.  k is an input parameter that determines
  // accuracy level. Higher value of k indicates more accuracy.
@@ -18,7 +18,7 @@
  if (millerTest(n, d) == false)
  return false
  5) Return true.
- 
+
  // This function is called for all k trials. It returns
  // false if n is composite and returns false if n is probably
  // prime.
@@ -27,7 +27,7 @@
  1) Pick a random number 'a' in range [2, n-2]
  2) Compute: x = pow(a, d) % n
  3) If x == 1 or x == n-1, return true.
- 
+
  // Below loop mainly runs 'r-1' times.
  4) Do following while d doesn't become n-1.
  a) x = (x*x) % n.
@@ -48,7 +48,7 @@ int power(int x, unsigned int y, int p)
         // If y is odd, multiply x with result
         if (y & 1)
             res = (res*x) % p;
-        
+
         // y must be even now
         y = y>>1; // y = y/2
         x = (x*x) % p;
@@ -66,13 +66,13 @@ bool millerRabinTest(int d, int n)
     // Pick a random number in [2..n-2]
     // Corner cases make sure that n > 4
     int a = 2 + rand() % (n - 4);
-    
+
     // Compute a^d % n
     int x = power(a, d, n);
-    
+
     if (x == 1  || x == n-1)
         return true;
-    
+
     // Keep squaring x while one of the following doesn't
     // happen
     // (i)   d does not reach n-1
@@ -82,11 +82,11 @@ bool millerRabinTest(int d, int n)
     {
         x = (x * x) % n;
         d *= 2;
-        
+
         if (x == 1)      return false;
         if (x == n-1)    return true;
     }
-    
+
     // Return composite
     return false;
 }
@@ -99,17 +99,17 @@ bool isPrime(int n, int k)
     // Corner cases
     if (n <= 1 || n == 4)  return false;
     if (n <= 3) return true;
-    
+
     // Find r such that n = 2^d * r + 1 for some r >= 1
     int d = n - 1;
     while (d % 2 == 0)
         d /= 2;
-    
+
     // Iterate given nber of 'k' times
     for (int i = 0; i < k; i++)
         if (millerRabinTest(d, n) == false)
             return false;
-    
+
     return true;
 }
 

@@ -47,7 +47,7 @@ The doc is under `assignment_1/Assignment 1.docx`.
 
 >- int getRandInt();
 
->- bool isPrime(int n);
+>- bool isPrime(int n, int k);
 
 >- int getPublicKey();
 
@@ -59,7 +59,7 @@ The doc is under `assignment_1/Assignment 1.docx`.
 
 >- list<int> engToBearCatAscii(string msg);
 
->- int polyEval(list<int> bca);
+>- int polyEval(list<int> bca, int base);
 
 >- int rsaEncrypt(int polyVal);
 
@@ -97,7 +97,7 @@ The doc is under `assignment_1/Assignment 1.docx`.
 >> ...
 
 ## Xin's List:
->- bool isPrime(int n); 
+>- bool isPrime(int n, int k); 
 
 >> Implemented by using miller-rabin, if no other prime test is used to replace this implementation, it can be considered as DONE
 
@@ -109,7 +109,7 @@ The doc is under `assignment_1/Assignment 1.docx`.
 
 >> this is implemented based on Prof's psudo code, but not sure if this is needed for RSA implementation, since euclidGcd() works okay for coprime check ( euclidGcd() ?= 1)
 
->- int polyEval(list<int> bca);
+>- int polyEval(list<int> bca, int base);
 
 >> Implemented as convert list of integers to a single number
 
