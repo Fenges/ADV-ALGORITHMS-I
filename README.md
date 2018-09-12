@@ -2,6 +2,23 @@
 
 The doc is under `assignment_1/Assignment 1.docx`.
 
+## Prerequisites
+
+- gpp compiler
+
+## Running the code
+
+### Running C++ Code locally
+
+Change direcotry to `assignment_1/programming_project`. To complie all files and generate the executable, issue the command 
+    
+    make
+    
+The .o files will be generated under `build/src/`, and the executable a.out will be generated under `build/`. To run the executable, change directory to `build/` and issue the command
+    
+    ./a.out
+    
+
 ## RSA Workflows:
 ##### 1) Get 2 Random Positive Numbers.
 >- getRandInt()
