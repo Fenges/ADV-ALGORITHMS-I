@@ -8,7 +8,7 @@ The doc is under `assignment_1/Assignment 1.docx`.
 
 ## Running the code
 
-### Running C++ Code locally
+### Running C++ code locally
 
 Change direcotry to `assignment_1/programming_project`. To complie all files and generate the executable, issue the command 
     
