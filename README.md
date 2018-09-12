@@ -36,10 +36,10 @@ The .o files will be generated under `build/src/`, and the executable a.out will
 ##### 4.a) If pass the CoPrime test, proceed. Otherwise back to step 3 and repeat.
 
 ##### 5) Prompt User for message
->- getMsg()
+>- getMsg() //I plan to combine getMsg and the conversion to BearCatASCII into one function
 
 ##### 6) Convert message into a list of integers by using BearCatASCII.
->- engToBearCatAscii()
+>- engToBearCatAscii() //I plan to combine getMsg and the conversion to BearCatASCII into one function
 
 ##### 7) Covert list of integers (27th base) to a single number (decimal)
 >- polyEval()
@@ -87,13 +87,13 @@ The .o files will be generated under `build/src/`, and the executable a.out will
 >- string bearCatAsciiToEng(list<int> bca);
 
 ## Alex's List:
->- ...
+>- string getMsg();
 
->> ...
+>- list<int> engToBearCatAscii(string msg);
 
->- ...
-
->> ...
+>- string bearCatAsciiToEng(list<int> bca);
+    
+>- changeBase(); //I might be able to do this once I have an idea what this function is doing, could be wrapped up with BearCat to English function
 
 ## Jianfeng's List:
 >- ...
