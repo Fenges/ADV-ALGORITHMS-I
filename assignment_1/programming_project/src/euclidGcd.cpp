@@ -1,15 +1,22 @@
 #include "../include/headers.hpp"
 
-// C++ Euclid GCD
-int euclidGcd(int a, int b)
-{
-    while (b != 0){
-        int r = a%b;
-        a = b;
-        b = r;
-    }
-    return a;
-}
+/***************************************************************
+|Function: euclidGCD(a, b)
+|Input: a, b (both nonnegative integers)
+|Output: greatest common divisor
+***************************************************************/
+int euclidGcd(int a, int b) {
+	int remainder;
+
+	// while the remainder of a % b != 0 do:
+	while (b != 0) {
+		// gcd(a, b) = gcd(a, a % b)
+		remainder = a % b;
+		a = b;
+		b = remainder;
+	}
+	return a;
+} // end euclidGCD
 
 vector<int> extendEuclidGcd(int a, int b, int g, int x, int y)
 {
