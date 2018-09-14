@@ -61,7 +61,6 @@ The .o files will be generated under `build/src/`, and the executable a.out will
 
 
 ## Method List:
-
 >- int getRandInt();
 
 >- bool isPrime(int n, int k);
@@ -107,7 +106,7 @@ The .o files will be generated under `build/src/`, and the executable a.out will
 ## Nathan's List:
 >- extendedEuclidGCD -- DONE
 
->> euclidGCD -- DONE
+>- euclidGCD -- DONE
 
 >- hornerEval (polyEval) -- DONE
 
