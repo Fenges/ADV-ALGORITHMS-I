@@ -5,6 +5,8 @@
 
 using namespace std;
 
+#define BASE 27
+
 int main()
 {
   cout << "######################################################### Miller-Rabin Primility Test: " << endl;
@@ -26,13 +28,15 @@ int main()
   cout << endl;
 
   cout << "######################################################### polyEval: " << endl;
-  int arr[] = {20, 5, 19, 20};
-  vector<int> polyTest (arr, arr + sizeof(arr) / sizeof(arr[0]));
-  cout << "polyEval({20, 5, 19, 20}, 27) = " << polyEval(polyTest, 27) << endl;
+  // this will be set to the message array
+  int arr[] = {20, 5, 19, 20}; 
+  // get size of array -> sizeof(arr) = 4 * 4 = 16 bytes / sizeof(int) = 4 bytes = 4 values
+  int size = (sizeof(arr)) / sizeof(int)) - 1; 
+  cout << "polyEval(arr, size, BASE) = " << polyEval(arr, size, BASE) << endl;
 
   cout << "######################################################### changeBase:" << endl;
-  vector<int> convertedNum = changeBase(397838, 27);
-  cout << "changeBase(397838, 27) = ";
+  vector<int> convertedNum = changeBase(397838, BASE);
+  cout << "changeBase(397838, BASE) = ";
   for(int i = 0; i < convertedNum.size(); i++)
     cout << convertedNum.at(i) << " ";
   cout << endl;
