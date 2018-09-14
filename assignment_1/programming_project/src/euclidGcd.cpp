@@ -1,6 +1,8 @@
 #include "../include/headers.hpp"
 
 /***************************************************************
+|Description: This function finds the greatest common divisor
+|	      of the inputs a and b.
 |Function: euclidGCD(a, b)
 |Input: a, b (both nonnegative integers)
 |Output: greatest common divisor
@@ -20,6 +22,9 @@ int euclidGCD(int a, int b) {
 
 
 /***************************************************************
+|Description: This function finds the greatest common divisor
+|	      of the inputs a and b while finding values s and
+|             t such that sa + tb = g where g is the gcd(a, b).
 |Function: extendEuclidGCD(a, b, g, s, t)
 |Input: a, b (nonnegative integers)
 |Output: return g = gcd(a,b) and integers s and t such that 
