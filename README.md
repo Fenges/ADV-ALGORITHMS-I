@@ -105,11 +105,11 @@ The .o files will be generated under `build/src/`, and the executable a.out will
 >> ...
 
 ## Nathan's List:
->- extendedEuclidGCD
+>- extendedEuclidGCD -- DONE
 
->> euclidGCD
+>> euclidGCD -- DONE
 
->- hornerEval (polyEval)
+>- hornerEval (polyEval) -- DONE
 
 >> ...
 
@@ -117,18 +117,6 @@ The .o files will be generated under `build/src/`, and the executable a.out will
 >- bool isPrime(int n, int k); 
 
 >> Implemented by using miller-rabin, if no other prime test is used to replace this implementation, it can be considered as DONE
-
->- int euclidGcd(int e, int phiN);
-
->> phiN = (p-1)*(q-1), and it returns the GCD(e, phiN) to check coprime.
-
->- tuple<int, int, int> extendEuclidGcd(int a, int b, int g, int x, int y);
-
->> this is implemented based on Prof's psudo code, but not sure if this is needed for RSA implementation, since euclidGcd() works okay for coprime check ( euclidGcd() ?= 1)
-
->- int polyEval(list<int> bca, int base);
-
->> Implemented as convert list of integers to a single number
 
 >- list<int> changeBase(int rsaDec, int base);
 
