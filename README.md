@@ -104,13 +104,13 @@ The .o files will be generated under `build/src/`, and the executable a.out will
 >> ...
 
 ## Nathan's List:
->- extendedEuclidGCD -- DONE
+>- extendedEuclidGCD      -- DONE
 
->- euclidGCD -- DONE
+>- euclidGCD              -- DONE
 
->- hornerEval (polyEval) -- DONE
+>- hornerEval (polyEval)  -- DONE
 
->> ...
+>- modularExponentiaion   -- DONE
 
 ## Xin's List:
 >- bool isPrime(int n, int k); 
