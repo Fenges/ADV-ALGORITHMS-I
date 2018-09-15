@@ -19,4 +19,11 @@ bool isCoPrime(int p, int q, int e);
 int polyEval(std::vector<int> num, int base);
 vector<int> changeBase(int num, int base);
 
+unsigned long long modularExponentiation(int x, unsigned long long y, int p);
+
+// Jianfeng's version
+int gcdExtended(int a, int b, int *x, int *y);
+bool millerRabinWrapper(int n, int k);
+int generatePrimeCandidate(int k);
+
 #endif

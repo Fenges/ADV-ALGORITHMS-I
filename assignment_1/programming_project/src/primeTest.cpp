@@ -1,4 +1,6 @@
 #include "../include/headers.hpp"
+#include <math.h>
+#include <random>
 
 // C++ program Miller-Rabin primality test
 /*
@@ -121,4 +123,70 @@ bool isCoPrime(long p, long q, long e)
     else{
         return false;
     }
+}
+
+int generatePrimeCandidate(int k) {
+    if (k % 2 == 0) k = k + 1;
+
+    bool candidateNotFound = true;
+
+    while (candidateNotFound) {
+        k = k + 2;
+        cout << k << endl;
+        bool prime = millerRabinWrapper(k, 40);
+        cout << prime << endl;
+        if (prime == true) candidateNotFound = false;
+    }
+    return k;
+}
+
+/*
+ * step 1: find n - 1 = (2^k) m
+ * step 2: choose a from 1 < a < n - 1
+ * step 3: compute b0 = a^m (mod n), bi = (bi-1)^2
+ */
+bool millerRabin(int n) {
+    int nMinus1 = n - 1;
+    // step 1
+    int m = n - 1;
+    int k = 0;
+    while (m % 2 == 0) {
+        m = m / 2;
+        k = k + 1;
+    }
+
+//    cout << "k: " << k << endl;
+//    cout << "m: " << m << endl;
+
+    // step 2
+    random_device rd; // obtain a random number from hardware
+    mt19937 eng(rd()); // seed the generator
+    uniform_int_distribution<> distr(1, n-1); // define the range
+
+    int a = distr(eng);
+
+    //cout << "a: " << a << endl;
+
+    // step 3
+    int b;
+    b = power(a, m, n);
+    if (b == 1 || b == nMinus1) return true;
+    cout << b << endl;
+    // iterate b after b0 up to k - 1 times
+    for (int i = 0; i < k - 1; i ++) {
+        b = power(b, 2, n);
+        if (b == 1) return false;
+        if (b == nMinus1) return true;
+    }
+
+    return false;
+}
+
+bool millerRabinWrapper(int n, int k) {
+    for (int i = 0; i < k; i++) {
+      if (millerRabin(n) == false) {
+        return false;
+      }
+    }
+    return true;
 }
