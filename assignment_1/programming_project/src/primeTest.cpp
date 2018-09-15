@@ -38,9 +38,9 @@
 // Utility function to do modular exponentiation.
 // It returns (x^y) % p
 
-int power(int x, unsigned int y, int p)
+long power(long x, unsigned long y, long p)
 {
-    int res = 1;      // Initialize result
+    long res = 1;      // Initialize result
     x = x % p;  // Update x if it is more than or
     // equal to p
     while (y > 0)
@@ -61,14 +61,14 @@ int power(int x, unsigned int y, int p)
 // probably prime.
 // d is an odd number such that  d*2<sup>r</sup> = n-1
 // for some r >= 1
-bool millerRabinTest(int d, int n)
+bool millerRabinTest(long d, long n)
 {
     // Pick a random number in [2..n-2]
     // Corner cases make sure that n > 4
-    int a = 2 + rand() % (n - 4);
+    long a = 2 + rand() % (n - 4);
 
     // Compute a^d % n
-    int x = power(a, d, n);
+    long x = power(a, d, n);
 
     if (x == 1  || x == n-1)
         return true;
@@ -94,14 +94,14 @@ bool millerRabinTest(int d, int n)
 // It returns false if n is composite and returns true if n
 // is probably prime.  k is an input parameter that determines
 // accuracy level. Higher value of k indicates more accuracy.
-bool isPrime(int n, int k)
+bool isPrime(long n, long k)
 {
     // Corner cases
     if (n <= 1 || n == 4)  return false;
     if (n <= 3) return true;
 
     // Find r such that n = 2^d * r + 1 for some r >= 1
-    int d = n - 1;
+    long d = n - 1;
     while (d % 2 == 0)
         d /= 2;
 
@@ -113,7 +113,7 @@ bool isPrime(int n, int k)
     return true;
 }
 
-bool isCoPrime(int p, int q, int e)
+bool isCoPrime(long p, long q, long e)
 {
     if (e%p != 0 && e%q != 0){
         return true;
