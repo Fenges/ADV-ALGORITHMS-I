@@ -13,7 +13,10 @@ int main()
   //cout << millerRabinWrapper(151, 40) << endl;
 
   int prime = generatePrimeCandidate(100000);
-     cout << prime << endl;
+  cout << prime << endl;
+
+  long primeTest = 1012345693;
+  cout << isPrime(primeTest, 1000) << endl;
 
 //
 //  cout << "######################################################### Euclid GCD:" << endl;
