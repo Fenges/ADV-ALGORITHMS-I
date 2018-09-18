@@ -37,8 +37,6 @@ vector<int> extendEuclidGCD(int a, int b, int g, int s, int t)
 	int r;
 	int stemp;
 
-
-
 	if (b == 0) {
 		res[0] = a;  // g
 		res[1] = 1;  // s

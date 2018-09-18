@@ -1,17 +1,17 @@
 #include "../include/headers.hpp"
 
-std::vector<int> getMsg()
+vector<int> getMsg()
 {
     char message[256];
     int msgCount;
     int j = 0;
 
-    std::cout << "Enter a message to encrypt: ";
-    std::cin.getline(message, 256);
-    msgCount = std::cin.gcount() - 1; //Ignore end of line character
-    std::cout << "Message Size: " << msgCount << ". ";
+    cout << "Enter a message to encrypt: ";
+    cin.getline(message, 256);
+    msgCount = cin.gcount() - 1; //Ignore end of line character
+    cout << "Message Size: " << msgCount << ". ";
 
-    std::vector<int> BEARCATII(msgCount, -1);
+    vector<int> BEARCATII(msgCount, -1);
 
     for(int i = 0; i < msgCount; i++)
     {
@@ -27,16 +27,16 @@ std::vector<int> getMsg()
         }
         else
         {
-            std::cout << "Invalid characters used, please try again." << std::endl;
+            cout << "Invalid characters used, please try again." << endl;
             BEARCATII.clear(); // Clear vector
             return BEARCATII; // Return empty vector if error/invalid characters detected
         }
     }
-    std::cout << "Message accepted." << std::endl;
+    cout << "Message accepted." << endl;
     return BEARCATII;
 }
 
-std::string BCtoEng(std::vector<int> BEARCATII)
+string BCtoEng(vector<int> BEARCATII)
 {
     string raw_message;
 
@@ -53,3 +53,4 @@ std::string BCtoEng(std::vector<int> BEARCATII)
     }
     return raw_message; // Return string rather than a C-Str for simplicity
 }
+
