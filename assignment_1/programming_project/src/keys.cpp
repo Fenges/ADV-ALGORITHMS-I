@@ -24,8 +24,7 @@ int getPrivateKey(int publicKey, int phi) {
     int y = 0;
     int g = gcdExtended(publicKey, phi, &x, &y);
 
-    if (x < 0)
-      x = phi + x;
+    if (x < 0) x = phi + x;
 
     return x;
 }
