@@ -45,5 +45,14 @@ int main()
     string originalMessage = BCtoEng(messageBase27);
     cout << originalMessage << endl;
 
+    // 9) Output all
+    cout << "-------------final output -------------" << endl;
+    cout << "p: " << p << endl;
+    cout << "q: " << q << endl;
+    cout << "n: " << n << endl;
+    cout << "M: " << BCtoEng(message_BEARCATII) << endl;
+    cout << "C: " << c << endl;
+    cout << "P: " << originalMessage << endl;
+
   return 0;
 }
