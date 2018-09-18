@@ -26,4 +26,6 @@ int gcdExtended(int a, int b, int *x, int *y);
 bool millerRabinWrapper(int n, int k);
 int generatePrimeCandidate(int k);
 
+vector<int> getMsg();
+
 #endif

@@ -15,8 +15,9 @@ int main()
   int prime = generatePrimeCandidate(100000);
   cout << prime << endl;
 
-  long primeTest = 1012345693;
-  cout << isPrime(primeTest, 1000) << endl;
+  vector<int> a = getMsg();
+  for (int i=0; i<a.size(); i++)
+    cout << a[i] << endl;
 
 //
 //  cout << "######################################################### Euclid GCD:" << endl;

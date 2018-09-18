@@ -22,7 +22,7 @@ std::vector<int> getMsg()
         }
         else if((message[i] > 96) && (message[i] < 123))
         {
-            BEARCATII[j] = int(message[i]) - 95; //Subtract 95 to turn ASCII alphabet into BEARCATII
+            BEARCATII[j] = int(message[i]) - 96; //Subtract 96 to turn ASCII alphabet into BEARCATII
             j++;
         }
         else
