@@ -8,6 +8,7 @@
 |          p (positive integer)
 |Output: x^y mod p
 *************************************************************/
+/*
 unsigned long long modularExponentiation(int x, unsigned long long y, int p) {
 	unsigned long long accumPowers = 1;
 	unsigned long long pow = x;
@@ -25,3 +26,4 @@ unsigned long long modularExponentiation(int x, unsigned long long y, int p) {
 	}
 	return accumPowers;
 } // end rightToLeftBinaryExponentiation
+*/

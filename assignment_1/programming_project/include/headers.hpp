@@ -33,6 +33,6 @@ string BCtoEng(vector<int> BEARCATII);
 // console.cpp
 unsigned long long getPublicKey(int phi);
 int getPrivateKey(int publicKey, int phi);
-long power(long x, unsigned long y, long p);
+long modExp(long a, unsigned long b, long n);
 
 #endif

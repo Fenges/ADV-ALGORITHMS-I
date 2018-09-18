@@ -6,6 +6,7 @@
 |Input: a[0:n] (array of real numbers), v (a real number)
 |Output: value of ax^n + ax^(n-1) + ... + ax^1 + a @ x = v
 ***************************************************************/
+/*
 int polyEval(int a[], int n, int v) {
 	int sum = a[0];
 
@@ -14,3 +15,4 @@ int polyEval(int a[], int n, int v) {
 	}
 	return sum;
 } // end polyEval
+*/
