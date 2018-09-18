@@ -19,12 +19,28 @@ int main()
     cout << "phi(n): " << phi << endl;
 
     // 2) Get public key e
-    int publicKey = getPublicKey(phi);
+    unsigned long long publicKey = getPublicKey(phi);
 
-
+    // 3) Get message
     vector<int> message_BEARCATII = getMsg();
 
-//
+    // 4) Convert message to base 27
+    int messageDecimal = polyEval(message_BEARCATII, 27);
+    cout << "message in decimal: " << messageDecimal << endl;
+
+    // 5) Encrypt message
+    int n = p*q;
+    unsigned long long c = modularExponentiation(messageDecimal, publicKey, n);
+    cout << "encrypted message: " << c << endl;
+
+    // 6 Decrypt message
+    int privateKey = getPrivateKey(publicKey, phi);
+    cout << "phi: " << phi << endl;
+    cout << "public key: " << publicKey << endl;
+    cout << "private key: " << privateKey << endl;
+    unsigned long long m = modularExponentiation(c, privateKey, n);
+    cout << "decrypted message: " << m << endl;
+
 //  cout << "######################################################### Euclid GCD:" << endl;
 //  cout << "gcd(23, 36) = " << euclidGcd(24, 36) << endl;
 //

@@ -1,7 +1,7 @@
 #include "../include/headers.hpp"
 
-int getPublicKey(int phi) {
-    int publicKey = 0;
+unsigned long long getPublicKey(int phi) {
+    unsigned long long publicKey = 0;
 
     cout << "Enter a public key to encrypt: " << endl;
     cin >> publicKey;
@@ -10,9 +10,20 @@ int getPublicKey(int phi) {
     while (publicKey == 0 || euclidGCD(publicKey, phi) != 1) {
         cout << "Invalid public key, please reenter." << endl;
         cin.clear();
-        cin.ignore(1);
+        cin.ignore(9, '\n');
         cin >> publicKey;
     }
 
+    cin.clear();
+    cin.ignore(9, '\n');
+
     return publicKey;
+}
+
+int getPrivateKey(int publicKey, int phi) {
+    int x = 0;
+    int y = 0;
+    int g = gcdExtended(publicKey, phi, &x, &y);
+    if (x < 0) x = phi + x;
+    return x;
 }

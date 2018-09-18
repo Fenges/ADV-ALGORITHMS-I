@@ -29,6 +29,7 @@ int generatePrimeCandidate(int k);
 vector<int> getMsg();
 
 // console.cpp
-int getPublicKey(int phi);
+unsigned long long getPublicKey(int phi);
+int getPrivateKey(int publicKey, int phi);
 
 #endif
