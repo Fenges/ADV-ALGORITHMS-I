@@ -132,9 +132,7 @@ int generatePrimeCandidate(int k) {
 
     while (candidateNotFound) {
         k = k + 2;
-        cout << k << endl;
         bool prime = millerRabinWrapper(k, 40);
-        cout << prime << endl;
         if (prime == true) candidateNotFound = false;
     }
     return k;
@@ -155,9 +153,6 @@ bool millerRabin(int n) {
         k = k + 1;
     }
 
-//    cout << "k: " << k << endl;
-//    cout << "m: " << m << endl;
-
     // step 2
     random_device rd; // obtain a random number from hardware
     mt19937 eng(rd()); // seed the generator
@@ -165,13 +160,11 @@ bool millerRabin(int n) {
 
     int a = distr(eng);
 
-    //cout << "a: " << a << endl;
-
     // step 3
     int b;
     b = power(a, m, n);
     if (b == 1 || b == nMinus1) return true;
-    cout << b << endl;
+
     // iterate b after b0 up to k - 1 times
     for (int i = 0; i < k - 1; i ++) {
         b = power(b, 2, n);

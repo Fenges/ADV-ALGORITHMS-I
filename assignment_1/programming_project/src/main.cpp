@@ -9,15 +9,20 @@ using namespace std;
 
 int main()
 {
-  cout << "######################################################### Miller-Rabin Primility Test: " << endl;
-  //cout << millerRabinWrapper(151, 40) << endl;
+    // 1) Get two prime numbers
+    int p = generatePrimeCandidate(2000);
+    int q = generatePrimeCandidate(3000);
 
-  int prime = generatePrimeCandidate(100000);
-  cout << prime << endl;
+    cout << "p: " << p << "; q: " << q << endl;
+    // output phi(n) = (p-1)(q-1)
+    int phi = (p-1)*(q-1);
+    cout << "phi(n): " << phi << endl;
 
-  vector<int> a = getMsg();
-  for (int i=0; i<a.size(); i++)
-    cout << a[i] << endl;
+    // 2) Get public key e
+    int publicKey = getPublicKey(phi);
+
+
+    vector<int> message_BEARCATII = getMsg();
 
 //
 //  cout << "######################################################### Euclid GCD:" << endl;

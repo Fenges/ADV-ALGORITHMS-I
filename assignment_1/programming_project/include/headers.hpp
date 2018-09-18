@@ -12,7 +12,7 @@
 
 using namespace std;
 
-int euclidGcd(int a, int b);
+int euclidGCD(int a, int b);
 vector<int> extendEuclidGcd(int a, int b, int g, int x, int y);
 bool isPrime(long n, long k);
 bool isCoPrime(int p, int q, int e);
@@ -27,5 +27,8 @@ bool millerRabinWrapper(int n, int k);
 int generatePrimeCandidate(int k);
 
 vector<int> getMsg();
+
+// console.cpp
+int getPublicKey(int phi);
 
 #endif
