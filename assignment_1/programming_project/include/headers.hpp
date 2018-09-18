@@ -26,10 +26,13 @@ int gcdExtended(int a, int b, int *x, int *y);
 bool millerRabinWrapper(int n, int k);
 int generatePrimeCandidate(int k);
 
+// msgFunctions.cpp
 vector<int> getMsg();
+string BCtoEng(vector<int> BEARCATII);
 
 // console.cpp
 unsigned long long getPublicKey(int phi);
 int getPrivateKey(int publicKey, int phi);
+long power(long x, unsigned long y, long p);
 
 #endif

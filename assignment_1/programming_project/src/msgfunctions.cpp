@@ -48,7 +48,7 @@ std::string BCtoEng(std::vector<int> BEARCATII)
         }
         else
         {
-            raw_message[i] = char(BEARCATII[i] + 95); // Add 95 to adjust BEARCATII to ASCII
+            raw_message[i] = char(BEARCATII[i] + 96); // Add 95 to adjust BEARCATII to ASCII
         }
     }
     return string(raw_message); // Return string rather than a C-Str for simplicity
