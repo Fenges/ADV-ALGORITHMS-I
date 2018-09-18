@@ -9,10 +9,6 @@ using namespace std;
 
 int main()
 {
-    static const int arr[] = {20, 5, 19, 20};
-    vector<int> vec (arr, arr + sizeof(arr) / sizeof(arr[0]) );
-    cout << BCtoEng(vec) << endl;
-
     // 1) Get two prime numbers
     int p = generatePrimeCandidate(2000);
     int q = generatePrimeCandidate(3000);
@@ -44,8 +40,6 @@ int main()
 
     // 7) Change base back to 27
     vector<int> messageBase27 = changeBase(m, 27);
-    for (int i=0; i < messageBase27.size(); i++)
-        cout << messageBase27[i] << endl;
 
     // 8) 27 to Eng
     string originalMessage = BCtoEng(messageBase27);

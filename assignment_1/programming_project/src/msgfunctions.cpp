@@ -38,18 +38,18 @@ std::vector<int> getMsg()
 
 std::string BCtoEng(std::vector<int> BEARCATII)
 {
-    char raw_message[BEARCATII.size()];
+    string raw_message;
 
     for(int i = 0; i < int(BEARCATII.size()); i++) // Iterate through vector converting BEARCATII back to ASCII representation
     {
         if(BEARCATII[i] == 0)
         {
-            raw_message[i] = ' '; // 0 represents 'space'
+            raw_message += ' '; // 0 represents 'space'
         }
         else
         {
-            raw_message[i] = char(BEARCATII[i] + 96); // Add 95 to adjust BEARCATII to ASCII
+            raw_message += char(BEARCATII[i] + 96); // Add 96 to adjust BEARCATII to ASCII
         }
     }
-    return string(raw_message); // Return string rather than a C-Str for simplicity
+    return raw_message; // Return string rather than a C-Str for simplicity
 }
