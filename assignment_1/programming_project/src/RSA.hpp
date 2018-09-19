@@ -1,5 +1,8 @@
 class RSA {
-
+	private:
+	
+	
+	public:
 string BCtoEng(vector<int> BEARCATII)
 {
     string raw_message;
