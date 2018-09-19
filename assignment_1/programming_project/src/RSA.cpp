@@ -1,8 +1,6 @@
-#include "RSA.h"
+class RSA {
 
-
-
-RSA::string BCtoEng(vector<int> BEARCATII)
+string BCtoEng(vector<int> BEARCATII)
 {
     string raw_message;
 
@@ -21,7 +19,7 @@ RSA::string BCtoEng(vector<int> BEARCATII)
 }
 
 
-RSA::vector<int> getMsg()
+vector<int> getMsg()
 {
     char message[256];
     int msgCount;
@@ -57,12 +55,7 @@ RSA::vector<int> getMsg()
     return BEARCATII;
 }
 
-RSA::int generatePrimeCandidate(int k);
-
-RSA::bool millerRabinWrapper(int, int);
-RSA::bool millerRabin(int);
-
-RSA::int polyEval(vector<int> coef, int base)
+int polyEval(vector<int> coef, int base)
 {
     int l = (int)coef.size();
     int indexFactor = l - 1;
@@ -96,7 +89,7 @@ RSA::int polyEval(vector<int> coef, int base)
     return (even + odd);
 }
 
-RSA::vector<int> changeBase(int num, int base){
+vector<int> changeBase(int num, int base){
     vector<int> res;
 
     while (num > base){
@@ -108,7 +101,7 @@ RSA::vector<int> changeBase(int num, int base){
     return res;
 }
 
-RSA::long modExp(long a, unsigned long b, long n)
+long modExp(long a, unsigned long b, long n)
 {
     long accumPowers = 1;
     a = a % n;
@@ -123,7 +116,7 @@ RSA::long modExp(long a, unsigned long b, long n)
     return accumPowers;
 }
 
-RSA::int generatePrimeCandidate(int k) {
+int generatePrimeCandidate(int k) {
     if (k % 2 == 0) k = k + 1;
 
     while (true) {
@@ -260,3 +253,4 @@ RSA::int gcdExtended(int a, int b, int *x, int *y) {
 
     return gcd;
 }
+};
