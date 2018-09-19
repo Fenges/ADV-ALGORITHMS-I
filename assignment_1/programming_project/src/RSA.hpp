@@ -165,7 +165,7 @@ RSA::bool millerRabin(int n) {
     return false;
 }
 
-RSA::bool millerRabinWrapper(int n, int k) {
+bool millerRabinWrapper(int n, int k) {
     for (int i = 0; i < k; i++) {
       if (!millerRabin(n)) return false;
     }
@@ -179,7 +179,7 @@ RSA::bool millerRabinWrapper(int n, int k) {
 |Input: a, b (both nonnegative integers)
 |Output: greatest common divisor
 ***************************************************************/
-RSA::int euclidGCD(int a, int b) {
+int euclidGCD(int a, int b) {
 	int remainder;
 
 	// while the remainder of a % b != 0 do:
@@ -201,7 +201,7 @@ RSA::int euclidGCD(int a, int b) {
 |Output: return g = gcd(a,b) and integers s and t such that 
 		 sa + tb = g
 ***************************************************************/
-RSA::vector<int> extendEuclidGCD(int a, int b, int g, int s, int t)
+vector<int> extendEuclidGCD(int a, int b, int g, int s, int t)
 {
 	vector<int> res(3);
 	int q;
@@ -239,7 +239,7 @@ RSA::vector<int> extendEuclidGCD(int a, int b, int g, int s, int t)
 	return res;
 }
 
-RSA::int gcdExtended(int a, int b, int *x, int *y) {
+int gcdExtended(int a, int b, int *x, int *y) {
     if (a == 0) {
         *x = 0; *y = 1;
         return b;
