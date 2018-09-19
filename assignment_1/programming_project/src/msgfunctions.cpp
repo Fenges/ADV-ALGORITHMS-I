@@ -1,5 +1,6 @@
 #include "../include/headers.hpp"
 
+/*
 vector<int> getMsg()
 {
     char message[256];
@@ -54,3 +55,5 @@ string BCtoEng(vector<int> BEARCATII)
     return raw_message; // Return string rather than a C-Str for simplicity
 }
 
+
+ */

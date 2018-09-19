@@ -1,30 +1,133 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <vector>
+#include <cmath>
+#include <iostream>
+#include <string>
+#include <stdexcept>
+#include <math.h>
+#include <random>
+
+using namespace std;
+
 class RSA {
-	private:
-	
-	
-	
-	public:
 
-	string BCtoEng(vector<int> BEARCATII)
-	{
-    		string raw_message;
+private:
+  int p, q, phi;
+  unsigned long long publicKey;
+  vector<int> msg_bc;
+  int msg_decimal;
+  int n;
+  int c;
+  int privateKey;
+  int m;
+  vector<int> msg_base27;
+  string msg_original;
 
-    		for(int i = 0; i < int(BEARCATII.size()); i++) // Iterate through vector converting BEARCATII back to ASCII representation
-    		{
-        		if(BEARCATII[i] == 0)
-        		{
-            			raw_message += ' '; // 0 represents 'space'
-        		}
-        		else
-        		{
-            			raw_message += char(BEARCATII[i] + 96); // Add 96 to adjust BEARCATII to ASCII
-        		}
-    		}
-    		return raw_message; // Return string rather than a C-Str for simplicity
-	}
+public:
+  RSA(){
+    this->p = 0;
+    this->q = 0;
+    /*
+    publicKey = 0;
+    msg_bc = 0;
+    msg_decimal = 0;
+    n = 0;
+    c = 0;
+    privateKey = 0;
+    m = 0;
+    msg_base27 = 0;
+    msg_original = "";
+    */
+  }
 
-vector<int> getMsg()
-{
+  void set_p(int p){
+    this->p = p;
+    cout << ">> p: " << this->p << endl;
+  }
+  void set_q(int q){
+    this->q = q;
+    cout << ">> q: " << this->q << endl;
+  }
+  void set_phi(){
+    this->phi = (this->p-1)*(this->q-1);
+    cout << ">> phi: " << this->phi << endl;
+  }
+  void set_publicKey(){
+    unsigned long long publicKey = this->getPublicKey();
+    this->publicKey = publicKey;
+    cout << ">> publicKey: " << this->publicKey << endl;
+  }
+
+  void set_msg_bc(){
+    vector<int> msg = this->getMsg();
+    this->msg_bc = msg;
+    cout << ">> msg_bc: " << this->msg_bc.at(0) << endl;
+  }
+
+  void set_msg_decimal(){
+    this->msg_decimal = this->polyEval(this->msg_bc, 27);
+    cout << ">> msg_decimal: " << this->msg_decimal << endl;
+  }
+  void set_n(){
+    this->n = p*q;
+    cout << ">> n: " << this->n << endl;
+  }
+  void set_c(){
+    this->c = this->modExp(this->msg_decimal, this->publicKey, this->n);
+    cout << ">> c: " << this->c << endl;
+  }
+  void set_privateKey(){
+    this->privateKey = this->getPrivateKey(this->publicKey, this->phi);
+    cout << ">> privateKey: " << this->privateKey << endl;
+  }
+  void set_m(){
+    this->m = this->modExp(this->c, this->privateKey, this->n);
+    cout << ">> m: " << this->m << endl;
+  }
+  void set_msg_base27(){
+    this->msg_base27 = this->changeBase(this->m, 27);
+    cout << ">> msg_base27: " << this->msg_base27.at(0) << endl;
+  }
+  void set_msg_original(){
+    this->msg_original = this->BCtoEng(this->msg_base27);
+    cout << ">> msg_original: " << this->msg_original << endl;
+  }
+
+  // ############################################################## Keys Functions
+  unsigned long long getPublicKey() {
+    unsigned long long publicKey = 0;
+
+    cout << "Enter a public key to encrypt: " << endl;
+    cin >> publicKey;
+
+    while (publicKey == 0 || euclidGCD(publicKey, this->phi) != 1) {
+      cout << "Invalid public key, please enter another one: " << endl;
+      cin.clear();
+      cin.ignore(9, '\n');
+      cin >> publicKey;
+    }
+
+    cin.clear();
+    cin.ignore(9, '\n'); // cin.ignore(nCountOfChar, delim);
+
+    return publicKey;
+  }
+
+  int getPrivateKey(int publicKey, int phi) {
+    int x = 0;
+    int y = 0;
+    int g = gcdExtended(publicKey, phi, &x, &y);
+
+    if (x < 0) x = phi + x;
+
+    return x;
+  }
+
+  // ############################################################## Msg Functions
+
+  vector<int> getMsg()
+  {
     char message[256];
     int msgCount;
     int j = 0;
@@ -57,10 +160,31 @@ vector<int> getMsg()
     }
     cout << "Message accepted." << endl;
     return BEARCATII;
-}
+  }
 
-int polyEval(vector<int> coef, int base)
-{
+  string BCtoEng(vector<int> BEARCATII)
+  {
+    string raw_message;
+
+    for(int i = 0; i < int(BEARCATII.size()); i++) // Iterate through vector converting BEARCATII back to ASCII representation
+    {
+        if(BEARCATII[i] == 0)
+        {
+            raw_message += ' '; // 0 represents 'space'
+        }
+        else
+        {
+            raw_message += char(BEARCATII[i] + 96); // Add 96 to adjust BEARCATII to ASCII
+        }
+    }
+    return raw_message; // Return string rather than a C-Str for simplicity
+  }
+
+  // ############################################################## number converting functions
+
+  int polyEval(vector<int> coef, int base = 27)
+  {
+    coef = this->msg_bc;
     int l = (int)coef.size();
     int indexFactor = l - 1;
     int even = 0;
@@ -91,9 +215,9 @@ int polyEval(vector<int> coef, int base)
     //multiply base for odd after loop
     odd *= base;
     return (even + odd);
-}
+  }
 
-vector<int> changeBase(int num, int base){
+  vector<int> changeBase(int num, int base){
     vector<int> res;
 
     while (num > base){
@@ -103,10 +227,13 @@ vector<int> changeBase(int num, int base){
     }
     res.insert (res.begin(), int(num));
     return res;
-}
+  }
 
-long modExp(long a, unsigned long b, long n)
-{
+  // ############################################################## Prime Test functions
+  // modular exponentiation.
+// returns (a^b) % n
+  long modExp(long a, unsigned long b, long n)
+  {
     long accumPowers = 1;
     a = a % n;
 
@@ -118,9 +245,9 @@ long modExp(long a, unsigned long b, long n)
         a = (a * a) % n;
     }
     return accumPowers;
-}
+  }
 
-int generatePrimeCandidate(int k) {
+  int generatePrimeCandidate(int k) {
     if (k % 2 == 0) k = k + 1;
 
     while (true) {
@@ -128,14 +255,15 @@ int generatePrimeCandidate(int k) {
         bool prime = millerRabinWrapper(k, 40);
         if (prime == true) return k;
     }
-}
+  }
 
 /*
  * step 1: find n - 1 = (2^k) m
  * step 2: choose a from 1 < a < n - 1
  * step 3: compute b0 = a^m (mod n), bi = (bi-1)^2
  */
-RSA::bool millerRabin(int n) {
+
+  bool millerRabin(int n) {
     int nMinus1 = n - 1;
 
     // step 1
@@ -165,17 +293,17 @@ RSA::bool millerRabin(int n) {
         if (b == 1) return false;
         if (b == nMinus1) return true;
     }
-
     return false;
-}
+  }
 
-bool millerRabinWrapper(int n, int k) {
+  bool millerRabinWrapper(int n, int k) {
     for (int i = 0; i < k; i++) {
       if (!millerRabin(n)) return false;
     }
     return true;
-}
+  }
 
+  // ############################################################## GCD
 /***************************************************************
 |Description: This function finds the greatest common divisor
 |	      of the inputs a and b.
@@ -195,6 +323,7 @@ int euclidGCD(int a, int b) {
 	}
 	return a;
 } // end euclidGCD
+
 
 /***************************************************************
 |Description: This function finds the greatest common divisor
@@ -243,7 +372,7 @@ vector<int> extendEuclidGCD(int a, int b, int g, int s, int t)
 	return res;
 }
 
-int gcdExtended(int a, int b, int *x, int *y) {
+  int gcdExtended(int a, int b, int *x, int *y) {
     if (a == 0) {
         *x = 0; *y = 1;
         return b;
@@ -256,5 +385,18 @@ int gcdExtended(int a, int b, int *x, int *y) {
     *y = x1;
 
     return gcd;
-}
+  }
+
+  void report(){
+    cout << "" << endl;
+    cout << "------------- Final Output -------------" << endl;
+    cout << "p -------> " << this->p << endl;
+    cout << "q -------> " << this->q << endl;
+    cout << "n -------> " << this->n << endl;
+    cout << "M -------> " << this->BCtoEng(msg_bc) << endl;
+    cout << "C -------> " << this->c << endl;
+    cout << "P -------> " << this->msg_original << endl;
+
+  }
+
 };
