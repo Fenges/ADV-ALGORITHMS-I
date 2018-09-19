@@ -2,25 +2,26 @@ class RSA {
 	private:
 	
 	
+	
 	public:
-string BCtoEng(vector<int> BEARCATII)
-{
-    string raw_message;
 
-    for(int i = 0; i < int(BEARCATII.size()); i++) // Iterate through vector converting BEARCATII back to ASCII representation
-    {
-        if(BEARCATII[i] == 0)
-        {
-            raw_message += ' '; // 0 represents 'space'
-        }
-        else
-        {
-            raw_message += char(BEARCATII[i] + 96); // Add 96 to adjust BEARCATII to ASCII
-        }
-    }
-    return raw_message; // Return string rather than a C-Str for simplicity
-}
+	string BCtoEng(vector<int> BEARCATII)
+	{
+    		string raw_message;
 
+    		for(int i = 0; i < int(BEARCATII.size()); i++) // Iterate through vector converting BEARCATII back to ASCII representation
+    		{
+        		if(BEARCATII[i] == 0)
+        		{
+            			raw_message += ' '; // 0 represents 'space'
+        		}
+        		else
+        		{
+            			raw_message += char(BEARCATII[i] + 96); // Add 96 to adjust BEARCATII to ASCII
+        		}
+    		}
+    		return raw_message; // Return string rather than a C-Str for simplicity
+	}
 
 vector<int> getMsg()
 {
