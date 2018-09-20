@@ -1,4 +1,4 @@
-#include <stdio.h>
+*#include <stdio.h>
 #include <stdlib.h>
 #include <vector>
 #include <cmath>
@@ -25,10 +25,12 @@ private:
   string msg_original;
 
 public:
-  RSA(){
+  // Constructor using initialization list
+  RSA() : p(0), q(0) {}
+  /*RSA(){
     this->p = 0;
     this->q = 0;
-    /*
+    
     publicKey = 0;
     msg_bc = 0;
     msg_decimal = 0;
@@ -38,8 +40,8 @@ public:
     m = 0;
     msg_base27 = 0;
     msg_original = "";
-    */
-  }
+    
+  }*/
 
   void set_p(int p){
     this->p = p;
