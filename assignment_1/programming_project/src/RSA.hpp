@@ -75,7 +75,8 @@ public:
     this->n = p*q;
     cout << ">> n: " << this->n << endl;
   }
-  void set_c(){
+
+	void set_c(){
     this->c = this->modExp(this->msg_decimal, this->publicKey, this->n);
     cout << ">> c: " << this->c << endl;
   }
@@ -96,7 +97,13 @@ public:
     cout << ">> msg_original: " << this->msg_original << endl;
   }
 
-  // ############################################################## Keys Functions
+	
+	
+	
+	
+  // ############################################################## 
+  //	KEYS FUNCTIONS
+  // ##############################################################		
   unsigned long long getPublicKey() {
     unsigned long long publicKey = 0;
 
@@ -126,8 +133,12 @@ public:
     return x;
   }
 
-  // ############################################################## Msg Functions
-
+	
+	
+	
+  // ############################################################## 
+  //	MESSAGE FUNCTIONS
+  // ############################################################## 
   vector<int> getMsg()
   {
     char message[256];
@@ -182,8 +193,12 @@ public:
     return raw_message; // Return string rather than a C-Str for simplicity
   }
 
-  // ############################################################## number converting functions
-
+	
+	
+	
+  // ############################################################## 
+  //	NUMBER CONVERTING FUNCTIONS
+  // ############################################################## 
   int polyEval(vector<int> coef, int base = 27)
   {
     coef = this->msg_bc;
@@ -231,9 +246,18 @@ public:
     return res;
   }
 
-  // ############################################################## Prime Test functions
-  // modular exponentiation.
-// returns (a^b) % n
+	
+	
+	
+  // ############################################################## 
+  //	PRIME TEST FUNCTIONS
+  // ############################################################## 
+	
+  /**************************************************************
+  |Function: modExp(a, b, n)
+  |Input:  a (long -- real number), b (+ integer), n (long)
+  |Output: a^b mod n
+  *************************************************************/
   long modExp(long a, unsigned long b, long n)
   {
     long accumPowers = 1;
@@ -241,13 +265,20 @@ public:
 
     while (b > 0)
     {
-        if (b & 1) accumPowers = (accumPowers * a) % n;
+	// if LSB of y is 1 (number is odd)
+        if (b & 1) {
+		accumPowers = (accumPowers * a) % n;
+	}
 
-        b = b >> 1;
+	// LSB in y is currently 0 (number is even)
         a = (a * a) % n;
+	
+	// shift bits in b right 1 so next bit 
+	// in line becomes LSB
+	b = b >> 1;
     }
     return accumPowers;
-  }
+  } // end modExp
 
   int generatePrimeCandidate(int k) {
     if (k % 2 == 0) k = k + 1;
@@ -259,11 +290,12 @@ public:
     }
   }
 
-/*
+/**************************************************
+ * Function: millerRabin(int)
  * step 1: find n - 1 = (2^k) m
  * step 2: choose a from 1 < a < n - 1
  * step 3: compute b0 = a^m (mod n), bi = (bi-1)^2
- */
+ *************************************************/
 
   bool millerRabin(int n) {
     int nMinus1 = n - 1;
@@ -300,12 +332,20 @@ public:
 
   bool millerRabinWrapper(int n, int k) {
     for (int i = 0; i < k; i++) {
-      if (!millerRabin(n)) return false;
+      if (!millerRabin(n)) {
+	      return false;
+      }
     }
     return true;
   }
 
-  // ############################################################## GCD
+	
+	
+	
+// ############################################################## 
+//	GCD
+// ############################################################## 
+	
 /***************************************************************
 |Description: This function finds the greatest common divisor
 |	      of the inputs a and b.
@@ -341,7 +381,7 @@ vector<int> extendEuclidGCD(int a, int b, int g, int s, int t)
 	vector<int> res(3);
 	int q;
 	int r;
-	int stemp;
+ 	int stemp;
 
 	if (b == 0) {
 		res[0] = a;  // g
@@ -372,7 +412,7 @@ vector<int> extendEuclidGCD(int a, int b, int g, int s, int t)
 	res[2] = t;  // t
 
 	return res;
-}
+} // end extendEuclidGCD
 
   int gcdExtended(int a, int b, int *x, int *y) {
     if (a == 0) {
@@ -383,7 +423,7 @@ vector<int> extendEuclidGCD(int a, int b, int g, int s, int t)
     int x1, y1;
     int gcd = gcdExtended(b%a, a, &x1, &y1);
 
-    *x = y1 - (b/a) * x1;
+    *x = y1 - (b / a) * x1;
     *y = x1;
 
     return gcd;
