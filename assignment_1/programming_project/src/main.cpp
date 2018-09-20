@@ -1,18 +1,14 @@
-#include <string>
-#include <tuple>
-#include <iostream>
 #include "./RSA.hpp"
 
 using namespace std;
 
 #define BASE 27
 
-int main()
-{
+int main(){
   // 1) Get two prime numbers
   RSA rsa = RSA();
-  rsa.set_p(rsa.generatePrimeCandidate(2000));
-  rsa.set_q(rsa.generatePrimeCandidate(3000));
+  rsa.set_p(2000); // select a range to get random prime number
+  rsa.set_q(3000); // select a range to get random prime number
   rsa.set_phi();
 
   // 2) Get public key e
