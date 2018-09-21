@@ -88,9 +88,9 @@ private:
   vector<int> msg_base27; // message in BearcatASCII format
   string msg_original; // original message (string)
 
-  // ##############################################################
+  // #####################
   //	KEYS FUNCTIONS
-  // ##############################################################
+  // #####################
   unsigned long long getPublicKey(){
     unsigned long long publicKey = 0;
 
@@ -120,9 +120,9 @@ private:
     return x;
   }
 
-  // ##############################################################
+  // ########################
   //	MESSAGE FUNCTIONS
-  // ##############################################################
+  // ########################
   vector<int> getMsg(){
     char message[256];
     int msgCount;
@@ -141,7 +141,8 @@ private:
         j++;
       }
       else if((message[i] > 96) && (message[i] < 123)){
-        BEARCATII[j] = int(message[i]) - 96; //Subtract 96 to turn ASCII alphabet into BEARCATII
+	//Subtract 96 to turn ASCII alphabet into BEARCATII
+        BEARCATII[j] = int(message[i]) - 96; 
         j++;
       }
       else{
@@ -157,7 +158,8 @@ private:
   string BCtoEng(vector<int> BEARCATII){
     string raw_message;
 
-    for(int i = 0; i < int(BEARCATII.size()); i++){ // Iterate through vector converting BEARCATII back to ASCII representation
+    // Iterate through vector converting BEARCATII back to ASCII representation
+    for(int i = 0; i < int(BEARCATII.size()); i++){ 
       if(BEARCATII[i] == 0){
         raw_message += ' '; // 0 represents 'space'
       }
@@ -168,9 +170,9 @@ private:
     return raw_message; // Return string rather than a C-Str for simplicity
   }
 
-  // ##############################################################
+  // #################################
   //	NUMBER CONVERTING FUNCTIONS
-  // ##############################################################
+  // #################################
   int polyEval(vector<int> coef, int base = 27){
     coef = this->msg_bc;
     int l = (int)coef.size();
@@ -217,15 +219,15 @@ private:
     return res;
   }
 
-  // ##############################################################
+  // ###########################
   //	PRIME TEST FUNCTIONS
-  // ##############################################################
+  // ###########################
 
-  /**************************************************************
+  /*********************************************************
   |Function: modExp(a, b, n)
   |Input:  a (long -- real number), b (+ integer), n (long)
   |Output: a^b mod n
-  *************************************************************/
+  *********************************************************/
   long modExp(long a, unsigned long b, long n){
     long accumPowers = 1;
     a = a % n;
@@ -304,17 +306,17 @@ private:
     return true;
   }
 
-  // ##############################################################
+  // #########
   //	GCD
-  // ##############################################################
+  // #########
 
-  /***************************************************************
+  /*************************************************************
   |Description: This function finds the greatest common divisor
   |	      of the inputs a and b.
   |Function: euclidGCD(a, b)
   |Input: a, b (both nonnegative integers)
   |Output: greatest common divisor
-  ***************************************************************/
+  *************************************************************/
   int euclidGCD(int a, int b){
     int remainder;
 
