@@ -25,7 +25,7 @@ public:
   }
 
   void set_phi(){
-    this->phi = (this->p-1)*(this->q-1);
+    this->phi = (this->p - 1) * (this->q - 1);
   }
 
   void set_publicKey(){
@@ -65,8 +65,8 @@ public:
   }
 
   void report(){
-    cout << "" << endl;
-    cout << "------------- Final Output -------------" << endl;
+    cout << "\n";
+    cout << "------------- Final Output -------------\n";
     cout << "p -------> " << this->p << endl;
     cout << "q -------> " << this->q << endl;
     cout << "n -------> " << this->n << endl;
@@ -94,11 +94,11 @@ private:
   unsigned long long getPublicKey(){
     unsigned long long publicKey = 0;
 
-    cout << "Enter a public key to encrypt: " << endl;
+    cout << "Enter a public key to encrypt: \n";
     cin >> publicKey;
 
     while (publicKey == 0 || euclidGCD(publicKey, this->phi) != 1){
-      cout << "Invalid public key, please enter another one: " << endl;
+      cout << "Invalid public key, please enter another one: \n";
       cin.clear();
       cin.ignore(9, '\n');
       cin >> publicKey;
@@ -146,12 +146,12 @@ private:
         j++;
       }
       else{
-        cout << "Invalid characters used, please try again." << endl;
+        cout << "Invalid characters used, please try again.\n";
         BEARCATII.clear(); // Clear vector
         return BEARCATII; // Return empty vector if error/invalid characters detected
       }
     }
-    cout << "Message accepted." << endl;
+    cout << "Message accepted.\n";
     return BEARCATII;
   }
 
@@ -279,7 +279,7 @@ private:
     // step 2
     random_device rd; // obtain a random number from hardware
     mt19937 eng(rd()); // seed the generator
-    uniform_int_distribution<> distr(1, n-1); // define the range
+    uniform_int_distribution<> distr(1, n - 1); // define the range
 
     int a = distr(eng);
 
@@ -341,12 +341,13 @@ private:
   ***************************************************************/
   int gcdExtended(int a, int b, int *x, int *y){
     if (a == 0){
-        *x = 0; *y = 1;
+        *x = 0; 
+	*y = 1;
         return b;
     }
 
     int x1, y1;
-    int gcd = gcdExtended(b%a, a, &x1, &y1);
+    int gcd = gcdExtended(b % a, a, &x1, &y1);
 
     *x = y1 - (b / a) * x1;
     *y = x1;
