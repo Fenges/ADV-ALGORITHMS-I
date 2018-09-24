@@ -7,8 +7,8 @@ using namespace std;
 int main(){
   // 1) Get two prime numbers
   RSA rsa = RSA();
-  rsa.set_p(2000); // select a range to get random prime number
-  rsa.set_q(3000); // select a range to get random prime number
+  rsa.set_p(8000, 50000); // select a range to get random prime number
+  rsa.set_q(8000, 50000); // select a range to get random prime number
   rsa.set_phi();
 
   // 2) Get public key e

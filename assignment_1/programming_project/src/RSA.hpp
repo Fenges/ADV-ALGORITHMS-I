@@ -16,12 +16,12 @@ public:
   // Constructor using initialization list
   RSA(): p(0), q(0){}
 
-  void set_p(int range){
-    this->p = this->generatePrimeCandidate(range);
+  void set_p(int beg, int end){
+    this->p = this->generatePrimeCandidate(beg, end);
   }
 
-  void set_q(int range){
-    this->q = this->generatePrimeCandidate(range);
+  void set_q(int beg, int end){
+    this->q = this->generatePrimeCandidate(beg, end);
   }
 
   void set_phi(){
@@ -248,7 +248,12 @@ private:
     return accumPowers;
   } // end modExp
 
-  int generatePrimeCandidate(int k){
+  int generatePrimeCandidate(int beg, int end){
+    random_device rd; // obtain a random number from hardware
+    mt19937 eng(rd()); // seed the generator
+    uniform_int_distribution<> distr(beg, end); // define the range
+    int k = distr(eng);
+
     if (k % 2 == 0) k = k + 1;
 
     while (true){
@@ -279,7 +284,7 @@ private:
     // step 2
     random_device rd; // obtain a random number from hardware
     mt19937 eng(rd()); // seed the generator
-    uniform_int_distribution<> distr(1, n - 1); // define the range
+    uniform_int_distribution<> distr(2, n - 2); // define the range
 
     int a = distr(eng);
 
@@ -341,7 +346,7 @@ private:
   ***************************************************************/
   int gcdExtended(int a, int b, int *x, int *y){
     if (a == 0){
-        *x = 0; 
+        *x = 0;
 	*y = 1;
         return b;
     }
