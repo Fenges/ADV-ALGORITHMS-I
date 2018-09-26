@@ -1,3 +1,19 @@
+/*############################################################
+  |
+  | Group # 13:
+  | * Alexander Stewart
+  | * Jianfeng Zeng
+  | * Nathan Daughety
+  | * Xin Li
+  |
+  | ----------------------------------------------------------
+  |
+  | 0. cd to the folder directory.
+  | 1. run "g++ main.cpp" in terminal.
+  | 2. run "./a.out" to start the application.
+  |
+############################################################*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <vector>
